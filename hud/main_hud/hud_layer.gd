@@ -53,8 +53,7 @@ func update_debug():
 health: {h}
 magicka: {m}
 fps: {fps}
-Thanks for
-watching.""".format({"h": Gamestate.state.health,
+test version""".format({"h": Gamestate.state.health,
 "hb": health_bar.value,
 "m": Gamestate.state.magicka,
 "fps": Engine.get_frames_per_second()})

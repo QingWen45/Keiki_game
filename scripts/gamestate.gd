@@ -69,14 +69,14 @@ func _ready():
 
 var debug_events = {
 	"zone01_stage01_cutscene_over": false,
-	"zone02_stage06_cutscene_over": true,
+	"zone02_stage06_cutscene_over": false,
 	"zone02_stage06_boss_defeat": false
 }
 
 func state_initialize():
 	state = {
-		"can_double_jump": true, 
-		"can_graze": true,
+		"can_double_jump": false, 
+		"can_graze": false,
 		"current_level": "res://zone/zone1/stage01.tscn",
 		"current_pos": "initial_position",
 		"current_dir": 1,
@@ -86,7 +86,7 @@ func state_initialize():
 		"max_health": 100,
 		"magicka": 100,
 		"max_magicka": 100,
-		"items": [0,1,2],
+		"items": [0],
 		"events": debug_events
 	}
 

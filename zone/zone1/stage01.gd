@@ -4,7 +4,6 @@ const dialog_name = "磨弓"
 var dialog_1 = [
 	"硅姬大人，出现了紧急状况\n",
 	"失控的埴轮们现在正在城市中作乱\n",
-	"这肯定又是畜生们的诡计吧\n",
 	"我先去查看一下情况，硅姬大人也马上行动起来吧\n"
 ]
 
@@ -26,7 +25,7 @@ func start_interact_dialog():
 		var msg = dialog_1[n]
 		if n == len(dialog_1) - 1:
 			is_end = true
-		dialog_box.show_message(dialog_name, msg, dialog_box.DIALOG_TYPE.PRESS, len(msg) * 0.2, is_end)
+		dialog_box.show_message(dialog_name, msg, dialog_box.DIALOG_TYPE.PRESS, len(msg) * 0.12, is_end)
 		yield(dialog_box, "dialog_finished")
 	start_second_animation()
 
