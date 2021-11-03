@@ -56,9 +56,12 @@ func update_items():
 		item_cur = item_next
 
 func load_item():
-	for i in Gamestate.state.items:
-		items[i].unlock()
-		items[i].effect()
+	for i in range(items.size()):
+		if Gamestate.state.items.has(items[i].item_no):
+			items[i].unlock()
+			items[i].effect()
+		else:
+			items[i].lock()
 
 func _initialize():
 	for i in items:
@@ -69,12 +72,16 @@ func _initialize():
 
 func activate():
 	item_cur = 0
+	update_items()
 	is_active = true
 	set_physics_process(true)
 	set_process_input(true)
 
 func deactivate():
+	item_cur = 0
+	update_items()
 	is_active = false
+	_initialize()
 	set_physics_process(false)
 	set_process_input(false)
 

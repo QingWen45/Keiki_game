@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://enemy/white.shader" type="Shader" id=1]
+[ext_resource path="res://enemy/Haniwa_guard/white.shader" type="Shader" id=1]
 [ext_resource path="res://assets/sprites/Enemies/Haniwa/Haniwa_spear.png" type="Texture" id=2]
 [ext_resource path="res://assets/environment/E.png" type="Texture" id=3]
 [ext_resource path="res://hud/dialog_text/dialog_box.tscn" type="PackedScene" id=4]

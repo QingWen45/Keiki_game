@@ -7,7 +7,7 @@ extends KinematicBody2D
 # warning-ignore: unused_signal
 signal boss_defeated
 
-export (int) var MAX_HEALTH = 250
+export (int) var MAX_HEALTH = 2500
 export (int) var DAMAGE = 20
 export (int) var MOVE_SPEED = 100
 export (float) var DECISION_TIMER = 0.5

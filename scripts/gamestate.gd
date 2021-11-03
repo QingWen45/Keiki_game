@@ -86,7 +86,7 @@ func state_initialize():
 		"max_health": 100,
 		"magicka": 100,
 		"max_magicka": 100,
-		"items": [0],
+		"items": [0,3,4],
 		"events": debug_events
 	}
 

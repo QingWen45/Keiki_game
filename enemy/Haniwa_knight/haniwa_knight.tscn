@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scripts/battle_sys/hurtbox.gd" type="Script" id=1]
 [ext_resource path="res://assets/audio/enemy/haniwa/tick.wav" type="AudioStream" id=2]
@@ -7,16 +7,11 @@
 [ext_resource path="res://enemy/Haniwa_knight/haniwa_knight.gd" type="Script" id=5]
 [ext_resource path="res://enemy/Haniwa_knight/states/move.gd" type="Script" id=6]
 [ext_resource path="res://enemy/Haniwa_knight/states/dead.gd" type="Script" id=7]
-[ext_resource path="res://enemy/white.shader" type="Shader" id=8]
 [ext_resource path="res://enemy/Haniwa_knight/states/attack.gd" type="Script" id=9]
 [ext_resource path="res://enemy/Haniwa_knight/states/charge.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 32 )
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = ExtResource( 8 )
-shader_param/is_white = false
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 128, 32 )
@@ -141,18 +136,17 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=11]
 length = 0.2
-step = 0.15
 tracks/0/type = "value"
-tracks/0/path = NodePath("rotator/Sprite:material:shader_param/is_white")
+tracks/0/path = NodePath("rotator/Sprite:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15 ),
+"times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ Color( 1, 1, 1, 0.392157 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [node name="haniwa_knight" type="KinematicBody2D"]
@@ -168,7 +162,6 @@ disabled = true
 [node name="rotator" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="rotator"]
-material = SubResource( 2 )
 position = Vector2( 16, -40 )
 texture = ExtResource( 3 )
 hframes = 5
