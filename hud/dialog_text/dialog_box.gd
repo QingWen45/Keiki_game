@@ -73,7 +73,7 @@ func show_message(onwer: String, msg: String, type = DIALOG_TYPE.TIMER, duration
 	elif type == DIALOG_TYPE.TIMER:
 		yield(tween, "tween_all_completed")
 
-		timer.start(duration * 2)
+		timer.start(duration)
 		yield(timer, "timeout")
 
 		emit_signal("dialog_finished")

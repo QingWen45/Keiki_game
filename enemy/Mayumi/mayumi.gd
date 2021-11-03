@@ -4,7 +4,10 @@ extends KinematicBody2D
 # get ready for the first boss!
 #------------------------------
 
-export (int) var MAX_HEALTH = 20
+# warning-ignore: unused_signal
+signal boss_defeated
+
+export (int) var MAX_HEALTH = 250
 export (int) var DAMAGE = 20
 export (int) var MOVE_SPEED = 100
 export (float) var DECISION_TIMER = 0.5
@@ -66,6 +69,7 @@ func _physics_process(delta):
 		velo = move_and_slide(velo, Vector2.UP)
 
 func activate():
+	self.show()
 	set_physics_process(true)
 
 func deactivate():
@@ -82,6 +86,10 @@ func attack2():
 	danmaku_create(5)
 	velo.x = 400 * dir_cur
 	$attack_player.play()
+	if health < MAX_HEALTH / 2:
+		yield(get_tree().create_timer(0.3), "timeout")
+	
+		danmaku_create(5) 
 
 func danmaku_create(v):
 	# warning-ignore:unused_variable
@@ -97,11 +105,13 @@ func danmaku_create(v):
 		gap.start(0.05)
 		yield(gap, "timeout")
 
+
 func hurt(_area, damage):
 	anim_fx.play("hit")
 	health -= damage
 	Gamestate.boss_health_change()
 	if health <= 0:
+		emit_signal("boss_defeated")
 		$defeated_player.play()
 		fsm.state_next = fsm.states.dead
 	else:

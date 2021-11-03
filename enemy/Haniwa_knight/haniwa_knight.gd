@@ -77,6 +77,7 @@ func hurt(_area, damage):
 
 func _on_player_dead():
 	is_player_detected = false
+	disable_collider()
 
 func _on_hitbox_area_entered(area):
 	area.emit_signal("hurt", self, DAMAGE)

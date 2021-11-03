@@ -5,6 +5,7 @@ const START_MENU = "res://menu/start_menu/start_menu.tscn"
 onready var load_anim = $load_layer/load_anim
 onready var hud = $hud_layer/hud
 onready var pause = $pause_layer/pause_menu
+onready var black_layer = $black_layer/ColorRect
 onready var screen_timer = $scrn_timer
 onready var save_timer = $save_timer
 onready var bgm_player = $bgm
@@ -122,6 +123,7 @@ var music_names = [
 
 func bgm_change(music: = 0):
 	if music == 0:
+		cur_music = music
 		tween.interpolate_property(bgm_player, "volume_db", 0, -60, 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 		tween.start()
 		yield(tween, "tween_all_completed")

@@ -34,6 +34,7 @@ func on_selected(selection_no):
 			deactivate()
 			Game.main.bgm_change(0)
 			Game.main.hud.hide()
+			Game.main.get_node("hud_layer").initialize()
 			Game.main.pause_finish()
 			Game.main.load_screen(START_MENU)
 		4: 

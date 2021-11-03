@@ -190,4 +190,6 @@ func _on_graze_area_exited(area):
 	graze_mp.play()
 
 func _on_death_timer_timeout():
+	Game.main.get_node("hud_layer").initialize()
+	Gamestate.load_gamestate()
 	Game.main.load_save()

@@ -64,6 +64,18 @@ __meta__ = {
 anims/fade_in = SubResource( 1 )
 anims/fade_out = SubResource( 2 )
 
+[node name="black_layer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="black_layer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 480.0
+margin_bottom = 270.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
 [node name="scrn_timer" type="Timer" parent="."]
 pause_mode = 2
 process_mode = 0

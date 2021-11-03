@@ -66,6 +66,13 @@ func _ready():
 	state_initialize()
 	self.pause_mode = PAUSE_MODE_PROCESS
 
+
+var debug_events = {
+	"zone01_stage01_cutscene_over": false,
+	"zone02_stage06_cutscene_over": true,
+	"zone02_stage06_boss_defeat": false
+}
+
 func state_initialize():
 	state = {
 		"can_double_jump": true, 
@@ -79,7 +86,7 @@ func state_initialize():
 		"max_health": 100,
 		"magicka": 100,
 		"max_magicka": 100,
-		"items": [0],
+		"items": [0,1,2],
 		"events": debug_events
 	}
 
@@ -133,7 +140,4 @@ func _load_gamestate() -> Dictionary:
 	f.close()
 	return data
 
-var debug_events = {
-	"zone01_stage01_cutscene_over": true
-}
 

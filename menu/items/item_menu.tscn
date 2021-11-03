@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://menu/items/menu.tres" type="StyleBox" id=1]
 [ext_resource path="res://menu/items/item.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://menu/items/item_scene/02_white_flowey.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/audio/ui/se_changeitem.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/audio/ui/se_cancel00.wav" type="AudioStream" id=10]
+[ext_resource path="res://menu/items/item_scene/05_mr_haniwa.tscn" type="PackedScene" id=11]
 
 [node name="item_menu" type="Control"]
 anchor_right = 1.0
@@ -80,7 +81,7 @@ margin_left = 144.0
 margin_right = 176.0
 margin_bottom = 32.0
 
-[node name="back6" parent="margin1/panel/margin2/split/items" instance=ExtResource( 2 )]
+[node name="mr_haniwa" parent="margin1/panel/margin2/split/items" instance=ExtResource( 11 )]
 margin_left = 180.0
 margin_right = 212.0
 margin_bottom = 32.0

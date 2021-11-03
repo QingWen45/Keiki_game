@@ -107,10 +107,10 @@ func on_boss_ready():
 	boss_sg01.max_value = boss_sg_health
 	boss_sg02.max_value = boss_sg_health
 	tween2.interpolate_property(boss_hud, "modulate:a", 0, 1.0, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween2.interpolate_property(boss_sg02, "value", 0, boss_sg_health, 2.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween2.interpolate_property(boss_sg02, "value", 0, boss_sg_health, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween2.start()
 	yield(tween2, "tween_all_completed")
-	tween2.interpolate_property(boss_sg01, "value", 0, boss_sg_health, 2.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween2.interpolate_property(boss_sg01, "value", 0, boss_sg_health, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween2.start()
 
 func on_boss_health_change():
@@ -124,3 +124,4 @@ func on_boss_health_change():
 
 func on_boss_clear():
 	tween2.interpolate_property(boss_hud, "modulate:a", 1.0, 0.0, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween2.start()

@@ -26,5 +26,5 @@ func run( delta ):
 		death_timer -= delta
 		if death_timer <= 0:
 			Engine.time_scale = 1.0
-			$death_timer.play(5.0)
+			$death_timer.start(2.0)
 			obj.emit_signal("player_dead")

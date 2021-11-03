@@ -31,7 +31,7 @@ func make_decision():
 		else:
 			fsm.state_next = fsm.states.attack2
 	else:
-		if decision_factor <= 5 or abs(player_pos.x) > 100:
+		if decision_factor <= 4 or abs(player_pos.x) > 300:
 			fsm.state_next = fsm.states.chase
 		else:
 			fsm.state_next = fsm.states.attack2

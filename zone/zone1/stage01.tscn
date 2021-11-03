@@ -363,5 +363,4 @@ __meta__ = {
 [node name="collider" type="CollisionShape2D" parent="end"]
 shape = SubResource( 5 )
 
-[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="body_entered" from="end" to="." method="_on_end_body_entered"]

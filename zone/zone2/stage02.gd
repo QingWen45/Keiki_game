@@ -1,5 +1,7 @@
 extends Level
 
+func _ready():
+	Game.main.bgm_change(10)
 
 func _on_begin_body_entered(_body):
 	Gamestate.state.current_level = "res://zone/zone2/stage01.tscn"
