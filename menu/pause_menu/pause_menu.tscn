@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://menu/scripts/menu_selection.tscn" type="PackedScene" id=1]
+[ext_resource path="res://menu/pause_menu/pause_menu.gd" type="Script" id=2]
+[ext_resource path="res://menu/items/item_menu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/audio/ui/se_pause.wav" type="AudioStream" id=4]
+
+[node name="pause_layer" type="CanvasLayer"]
+
+[node name="pause_menu" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="pause_menu"]
+modulate = Color( 1, 1, 1, 0.509804 )
+margin_right = 488.0
+margin_bottom = 280.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="margin" type="MarginContainer" parent="pause_menu"]
+margin_right = 440.0
+margin_bottom = 240.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hbox" type="HBoxContainer" parent="pause_menu/margin"]
+margin_right = 440.0
+margin_bottom = 240.0
+alignment = 2
+
+[node name="selections" type="VBoxContainer" parent="pause_menu/margin/hbox"]
+margin_left = 360.0
+margin_right = 440.0
+margin_bottom = 240.0
+alignment = 2
+
+[node name="continue" parent="pause_menu/margin/hbox/selections" instance=ExtResource( 1 )]
+margin_top = 139.0
+margin_right = 80.0
+margin_bottom = 156.0
+text = "continue"
+
+[node name="items" parent="pause_menu/margin/hbox/selections" instance=ExtResource( 1 )]
+margin_top = 160.0
+margin_right = 80.0
+margin_bottom = 177.0
+text = "items"
+
+[node name="load_save" parent="pause_menu/margin/hbox/selections" instance=ExtResource( 1 )]
+margin_top = 181.0
+margin_right = 80.0
+margin_bottom = 198.0
+text = "load save"
+
+[node name="back_title" parent="pause_menu/margin/hbox/selections" instance=ExtResource( 1 )]
+margin_top = 202.0
+margin_right = 80.0
+margin_bottom = 219.0
+text = "back title"
+
+[node name="quit" parent="pause_menu/margin/hbox/selections" instance=ExtResource( 1 )]
+margin_top = 223.0
+margin_right = 80.0
+margin_bottom = 240.0
+text = "quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="pause_menu"]
+bus = "fx"
+
+[node name="item_menu" parent="." instance=ExtResource( 3 )]
+visible = false
+is_active = false
+
+[node name="pause" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "fx"

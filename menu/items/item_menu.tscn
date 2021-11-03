@@ -1,0 +1,134 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://menu/items/menu.tres" type="StyleBox" id=1]
+[ext_resource path="res://menu/items/item.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/fonts/fzxs12.tres" type="DynamicFont" id=3]
+[ext_resource path="res://menu/items/item_scene/00_graver.tscn" type="PackedScene" id=4]
+[ext_resource path="res://menu/items/styleboxline.tres" type="StyleBox" id=5]
+[ext_resource path="res://menu/items/item_menu.gd" type="Script" id=6]
+[ext_resource path="res://menu/items/item_scene/01_magatama.tscn" type="PackedScene" id=7]
+[ext_resource path="res://menu/items/item_scene/02_white_flowey.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/audio/ui/se_changeitem.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/audio/ui/se_cancel00.wav" type="AudioStream" id=10]
+
+[node name="item_menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+is_active = true
+
+[node name="margin1" type="MarginContainer" parent="."]
+margin_left = 80.0
+margin_top = 40.0
+margin_right = 400.0
+margin_bottom = 220.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="panel" type="Panel" parent="margin1"]
+margin_right = 320.0
+margin_bottom = 180.0
+custom_styles/panel = ExtResource( 1 )
+
+[node name="margin2" type="MarginContainer" parent="margin1/panel"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 315.0
+margin_bottom = 175.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="split" type="HSplitContainer" parent="margin1/panel/margin2"]
+margin_right = 310.0
+margin_bottom = 170.0
+dragger_visibility = 1
+
+[node name="items" type="GridContainer" parent="margin1/panel/margin2/split"]
+margin_right = 212.0
+margin_bottom = 170.0
+columns = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="graver" parent="margin1/panel/margin2/split/items" instance=ExtResource( 4 )]
+margin_right = 32.0
+margin_bottom = 32.0
+
+[node name="magatama" parent="margin1/panel/margin2/split/items" instance=ExtResource( 7 )]
+margin_left = 36.0
+margin_right = 68.0
+margin_bottom = 32.0
+
+[node name="wt_fl" parent="margin1/panel/margin2/split/items" instance=ExtResource( 8 )]
+margin_left = 72.0
+margin_right = 104.0
+margin_bottom = 32.0
+
+[node name="back4" parent="margin1/panel/margin2/split/items" instance=ExtResource( 2 )]
+margin_left = 108.0
+margin_right = 140.0
+margin_bottom = 32.0
+
+[node name="back5" parent="margin1/panel/margin2/split/items" instance=ExtResource( 2 )]
+margin_left = 144.0
+margin_right = 176.0
+margin_bottom = 32.0
+
+[node name="back6" parent="margin1/panel/margin2/split/items" instance=ExtResource( 2 )]
+margin_left = 180.0
+margin_right = 212.0
+margin_bottom = 32.0
+
+[node name="description" type="VBoxContainer" parent="margin1/panel/margin2/split"]
+margin_left = 224.0
+margin_right = 310.0
+margin_bottom = 170.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="up_line" type="HSeparator" parent="margin1/panel/margin2/split/description"]
+margin_right = 86.0
+margin_bottom = 4.0
+custom_styles/separator = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name_lb" type="Label" parent="margin1/panel/margin2/split/description"]
+margin_top = 8.0
+margin_right = 86.0
+margin_bottom = 21.0
+custom_fonts/font = ExtResource( 3 )
+text = "道具名称"
+
+[node name="down_line" type="HSeparator" parent="margin1/panel/margin2/split/description"]
+margin_top = 25.0
+margin_right = 86.0
+margin_bottom = 29.0
+custom_styles/separator = ExtResource( 5 )
+
+[node name="des_lb" type="Label" parent="margin1/panel/margin2/split/description"]
+margin_top = 33.0
+margin_right = 86.0
+margin_bottom = 78.0
+custom_fonts/font = ExtResource( 3 )
+text = "硅姬在这里输入一段富有意义的介绍吧yeah"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+bus = "fx"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+bus = "fx"

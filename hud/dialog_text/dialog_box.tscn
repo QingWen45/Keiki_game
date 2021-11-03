@@ -1,0 +1,95 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://hud/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://hud/dialog_text/arrow.png" type="Texture" id=2]
+[ext_resource path="res://hud/dialog_text/dialog_box.gd" type="Script" id=3]
+[ext_resource path="res://assets/audio/ui/se_changeitem.wav" type="AudioStream" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "arrow"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("arrow:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 184, 256 ), Vector2( 184, 254 ) ]
+}
+
+[node name="dialog_box" type="Control"]
+margin_left = -136.0
+margin_top = -336.0
+margin_right = 144.0
+margin_bottom = -32.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.486
+anchor_top = 1.105
+anchor_right = 0.486
+anchor_bottom = 1.105
+margin_left = -72.08
+margin_top = -287.92
+margin_right = 71.92
+margin_bottom = -63.92
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 146.0
+margin_right = 144.0
+margin_bottom = 175.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_right = 44.0
+margin_bottom = 29.0
+theme = ExtResource( 1 )
+text = "test:"
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+margin_top = 179.0
+margin_right = 144.0
+margin_bottom = 224.0
+grow_vertical = 0
+theme = ExtResource( 1 )
+text = "对话
+"
+autowrap = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="arrow" type="TextureRect" parent="."]
+anchor_left = 0.486
+anchor_top = 1.105
+anchor_right = 0.486
+anchor_bottom = 1.105
+margin_left = 47.92
+margin_top = -79.92
+margin_right = 63.92
+margin_bottom = -63.9198
+texture = ExtResource( 2 )
+stretch_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/arrow = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

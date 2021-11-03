@@ -1,0 +1,317 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://assets/sprites/keiki.png" type="Texture" id=1]
+[ext_resource path="res://player/keiki.gd" type="Script" id=2]
+[ext_resource path="res://player/states/idle.gd" type="Script" id=3]
+[ext_resource path="res://player/states/run.gd" type="Script" id=4]
+[ext_resource path="res://player/states/fall.gd" type="Script" id=5]
+[ext_resource path="res://player/states/jump.gd" type="Script" id=6]
+[ext_resource path="res://player/states/double_jump.gd" type="Script" id=7]
+[ext_resource path="res://player/states/hurt.gd" type="Script" id=8]
+[ext_resource path="res://player/states/attack.gd" type="Script" id=9]
+[ext_resource path="res://player/states/fall_attack.gd" type="Script" id=10]
+[ext_resource path="res://assets/fonts/ka_pixel.tres" type="DynamicFont" id=11]
+[ext_resource path="res://player/dialog.gd" type="Script" id=12]
+[ext_resource path="res://player/states/dead.gd" type="Script" id=13]
+[ext_resource path="res://scripts/battle_sys/hurtbox.gd" type="Script" id=14]
+[ext_resource path="res://assets/audio/player/attack.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/audio/player/se_graze.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/audio/player/footstep_01.wav" type="AudioStream" id=17]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12, 20 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "attack"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 16, 17, 18, 19, 20, 21 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("states/attack:is_anim_end")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "death"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 29, 30, 31, 32, 33, 34 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "fall_attack"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 22, 23, 24, 25, 26, 27 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("states/fall_attack:is_anim_end")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "hit"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 28 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 13 ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 8, 9, 10, 11, 12 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/player:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false, true, false, true ]
+}
+
+[sub_resource type="CircleShape2D" id=11]
+
+[sub_resource type="CircleShape2D" id=12]
+radius = 40.0
+
+[node name="player" type="KinematicBody2D"]
+position = Vector2( 0, -32 )
+collision_layer = 128
+script = ExtResource( 2 )
+
+[node name="physic_collider" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 12 )
+shape = SubResource( 1 )
+
+[node name="rotator" type="Node2D" parent="."]
+
+[node name="player" type="Sprite" parent="rotator"]
+texture = ExtResource( 1 )
+hframes = 6
+vframes = 6
+frame = 1
+
+[node name="bullet_spawn" type="Position2D" parent="rotator"]
+position = Vector2( 16, 0 )
+
+[node name="dialog_spawn" type="Position2D" parent="rotator"]
+position = Vector2( 8, -16 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/attack = SubResource( 2 )
+anims/death = SubResource( 3 )
+anims/fall = SubResource( 4 )
+anims/fall_attack = SubResource( 5 )
+anims/hit = SubResource( 6 )
+anims/idle = SubResource( 7 )
+anims/jump = SubResource( 8 )
+anims/run = SubResource( 9 )
+
+[node name="anim_fx" type="AnimationPlayer" parent="."]
+anims/hurt = SubResource( 10 )
+
+[node name="Label" type="Label" parent="."]
+margin_top = -40.0
+margin_right = 64.0
+margin_bottom = -15.0
+rect_pivot_offset = Vector2( 32, 12 )
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color = Color( 0.941176, 0.913725, 0.498039, 1 )
+text = "oh!"
+valign = 1
+uppercase = true
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Label"]
+
+[node name="hurtbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 64
+collision_mask = 4
+script = ExtResource( 14 )
+
+[node name="collider" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource( 11 )
+
+[node name="graze_area" type="Area2D" parent="."]
+visible = false
+collision_layer = 64
+collision_mask = 4
+
+[node name="graze_collider" type="CollisionShape2D" parent="graze_area"]
+shape = SubResource( 12 )
+
+[node name="states" type="Node" parent="."]
+
+[node name="idle" type="Node" parent="states"]
+script = ExtResource( 3 )
+
+[node name="run" type="Node" parent="states"]
+script = ExtResource( 4 )
+
+[node name="Timer" type="Timer" parent="states/run"]
+
+[node name="fall" type="Node" parent="states"]
+script = ExtResource( 5 )
+
+[node name="jump" type="Node" parent="states"]
+script = ExtResource( 6 )
+
+[node name="double_jump" type="Node" parent="states"]
+script = ExtResource( 7 )
+
+[node name="hurt" type="Node" parent="states"]
+script = ExtResource( 8 )
+
+[node name="attack" type="Node" parent="states"]
+script = ExtResource( 9 )
+is_anim_end = true
+
+[node name="fall_attack" type="Node" parent="states"]
+script = ExtResource( 10 )
+
+[node name="dead" type="Node" parent="states"]
+script = ExtResource( 13 )
+
+[node name="death_timer" type="Timer" parent="states/dead"]
+wait_time = 3.0
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+bus = "fx"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+bus = "fx"
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+bus = "fx"
+
+[node name="step" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+bus = "fx"
+
+[connection signal="area_exited" from="graze_area" to="." method="_on_graze_area_exited"]
+[connection signal="timeout" from="states/run/Timer" to="states/run" method="_on_Timer_timeout"]
+[connection signal="timeout" from="states/dead/death_timer" to="." method="_on_death_timer_timeout"]

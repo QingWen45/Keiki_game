@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://menu/items/empty.png" type="Texture" id=1]
+[ext_resource path="res://menu/items/o_square.png" type="Texture" id=2]
+[ext_resource path="res://menu/items/item_scene/00_graver.gd" type="Script" id=3]
+[ext_resource path="res://menu/items/item_icon/carve_pen.png" type="Texture" id=4]
+
+[node name="graver" type="TextureRect"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="item_image" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

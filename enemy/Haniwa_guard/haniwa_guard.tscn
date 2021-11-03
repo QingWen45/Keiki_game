@@ -1,0 +1,262 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://assets/sprites/Enemies/Haniwa/Haniwa_spear.png" type="Texture" id=1]
+[ext_resource path="res://enemy/Haniwa_guard/haniwa_guard.gd" type="Script" id=2]
+[ext_resource path="res://scripts/battle_sys/hurtbox.gd" type="Script" id=3]
+[ext_resource path="res://enemy/Haniwa_guard/states/move.gd" type="Script" id=4]
+[ext_resource path="res://enemy/Haniwa_guard/states/dead.gd" type="Script" id=5]
+[ext_resource path="res://enemy/Haniwa_guard/states/idle.gd" type="Script" id=6]
+[ext_resource path="res://enemy/Haniwa_guard/states/chase.gd" type="Script" id=7]
+[ext_resource path="res://enemy/Haniwa_guard/states/attack.gd" type="Script" id=8]
+[ext_resource path="res://enemy/white.shader" type="Shader" id=9]
+[ext_resource path="res://assets/audio/enemy/haniwa/Axe Drop.wav" type="AudioStream" id=10]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 24 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 9 )
+shader_param/is_white = false
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 96, 24 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 10, 32 )
+
+[sub_resource type="Animation" id=5]
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotator/hitbox/collider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.9 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("states/attack")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_attack_end"
+} ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 27, 28, 29, 30, 31, 32, 33 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 1.6
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7, 8, 9, 10, 11 ]
+}
+
+[sub_resource type="Animation" id=9]
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.2
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/Sprite:material:shader_param/is_white")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="haniwa_guard" type="KinematicBody2D"]
+collision_layer = 0
+script = ExtResource( 2 )
+
+[node name="physic_collider" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, -24 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="rotator" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="rotator"]
+material = SubResource( 2 )
+position = Vector2( 16, -47 )
+texture = ExtResource( 1 )
+hframes = 6
+vframes = 6
+
+[node name="wall_detect" type="RayCast2D" parent="rotator"]
+visible = false
+position = Vector2( 24, -32 )
+enabled = true
+cast_to = Vector2( 8, 0 )
+
+[node name="cliff_detect" type="RayCast2D" parent="rotator"]
+visible = false
+position = Vector2( 24, 0 )
+enabled = true
+cast_to = Vector2( 0, 10 )
+
+[node name="player_detect" type="Area2D" parent="rotator"]
+visible = false
+collision_layer = 0
+collision_mask = 128
+
+[node name="collider" type="CollisionShape2D" parent="rotator/player_detect"]
+position = Vector2( 96, -40 )
+shape = SubResource( 3 )
+
+[node name="hitbox" type="Area2D" parent="rotator"]
+visible = false
+collision_layer = 4
+collision_mask = 64
+
+[node name="collider" type="CollisionPolygon2D" parent="rotator/hitbox"]
+polygon = PoolVector2Array( -24, -8, 0, -88, 48, -72, 64, 0 )
+disabled = true
+
+[node name="hurtbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 8
+collision_mask = 0
+script = ExtResource( 3 )
+
+[node name="collider" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2( 0, -32 )
+shape = SubResource( 4 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/attack = SubResource( 5 )
+anims/death = SubResource( 6 )
+anims/idle = SubResource( 7 )
+anims/move = SubResource( 8 )
+
+[node name="anim_fx" type="AnimationPlayer" parent="."]
+anims/disappear = SubResource( 9 )
+anims/hit = SubResource( 10 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+visible = false
+position = Vector2( 1.90735e-06, -32 )
+scale = Vector2( 8.85, 3.05 )
+freeze_bodies = false
+pause_particles = false
+pause_animated_sprites = false
+physics_process_parent = true
+
+[node name="states" type="Node" parent="."]
+
+[node name="idle" type="Node" parent="states"]
+script = ExtResource( 6 )
+
+[node name="move" type="Node" parent="states"]
+script = ExtResource( 4 )
+
+[node name="dead" type="Node" parent="states"]
+script = ExtResource( 5 )
+
+[node name="chase" type="Node" parent="states"]
+script = ExtResource( 7 )
+
+[node name="attack" type="Node" parent="states"]
+script = ExtResource( 8 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+bus = "fx"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+bus = "fx"
+
+[connection signal="body_entered" from="rotator/player_detect" to="." method="_on_player_detect_body_entered"]
+[connection signal="body_exited" from="rotator/player_detect" to="." method="_on_player_detect_body_exited"]
+[connection signal="area_entered" from="rotator/hitbox" to="." method="_on_hitbox_area_entered"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/se_tan02.wav-ab5dbc034ce8622a32a3710a5e191a05.sample"
+
+[deps]
+
+source_file="res://assets/audio/enemy/haniwa/se_tan02.wav"
+dest_files=[ "res://.import/se_tan02.wav-ab5dbc034ce8622a32a3710a5e191a05.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

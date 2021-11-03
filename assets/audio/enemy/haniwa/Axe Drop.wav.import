@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Axe Drop.wav-5199867fd19c0f7d5fbd3606fb1ca818.sample"
+
+[deps]
+
+source_file="res://assets/audio/enemy/haniwa/Axe Drop.wav"
+dest_files=[ "res://.import/Axe Drop.wav-5199867fd19c0f7d5fbd3606fb1ca818.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

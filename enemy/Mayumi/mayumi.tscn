@@ -1,0 +1,316 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://enemy/white.shader" type="Shader" id=1]
+[ext_resource path="res://assets/sprites/mayumi.png" type="Texture" id=2]
+[ext_resource path="res://scripts/battle_sys/hurtbox.gd" type="Script" id=3]
+[ext_resource path="res://enemy/Mayumi/mayumi.gd" type="Script" id=4]
+[ext_resource path="res://assets/audio/enemy/haniwa/se_tan02.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/enemy/se_plst00.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/audio/enemy/se_slash.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/audio/enemy/hit.wav" type="AudioStream" id=8]
+[ext_resource path="res://enemy/Mayumi/states/idle.gd" type="Script" id=9]
+[ext_resource path="res://enemy/Mayumi/states/chase.gd" type="Script" id=10]
+[ext_resource path="res://enemy/Mayumi/states/attack1.gd" type="Script" id=11]
+[ext_resource path="res://enemy/Mayumi/states/attack2.gd" type="Script" id=12]
+[ext_resource path="res://enemy/Mayumi/states/summon.gd" type="Script" id=13]
+[ext_resource path="res://enemy/Mayumi/states/death.gd" type="Script" id=14]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 24 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 1 )
+shader_param/is_white = false
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10, 24 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "attack1"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotator/hitbox_1/collider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "attack1"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "attack2"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotator/hitbox_2/collider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "attack2"
+} ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "defeated"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "defeated_loop"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 47, 48 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "run"
+length = 0.7
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 8, 9, 10, 11 ]
+}
+
+[sub_resource type="Animation" id=10]
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.2
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotator/Sprite:material:shader_param/is_white")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="mayumi" type="KinematicBody2D"]
+position = Vector2( -3, -32 )
+collision_layer = 0
+script = ExtResource( 4 )
+
+[node name="physic_shape" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 3, 8 )
+shape = SubResource( 1 )
+
+[node name="rotator" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="rotator"]
+material = SubResource( 2 )
+texture = ExtResource( 2 )
+hframes = 7
+vframes = 7
+frame = 1
+
+[node name="hitbox_1" type="Area2D" parent="rotator"]
+visible = false
+collision_layer = 4
+collision_mask = 64
+
+[node name="collider" type="CollisionPolygon2D" parent="rotator/hitbox_1"]
+polygon = PoolVector2Array( -29, -16, 19, -16, 51, 8, 3, 32 )
+disabled = true
+
+[node name="hitbox_2" type="Area2D" parent="rotator"]
+collision_layer = 4
+collision_mask = 64
+
+[node name="collider" type="CollisionPolygon2D" parent="rotator/hitbox_2"]
+visible = false
+polygon = PoolVector2Array( -37, 16, 27, -16, 59, 0, 3, 32 )
+disabled = true
+
+[node name="hurtbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 8
+collision_mask = 0
+script = ExtResource( 3 )
+
+[node name="collider" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2( 3, 8 )
+shape = SubResource( 3 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/attack1 = SubResource( 4 )
+anims/attack2 = SubResource( 5 )
+anims/defeated = SubResource( 6 )
+anims/defeated_loop = SubResource( 7 )
+anims/idle = SubResource( 8 )
+anims/run = SubResource( 9 )
+
+[node name="anim_fx" type="AnimationPlayer" parent="."]
+anims/disappear = SubResource( 10 )
+anims/hit = SubResource( 11 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="visual_timer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="gap_timer" type="Timer" parent="."]
+
+[node name="states" type="Node" parent="."]
+
+[node name="idle" type="Node" parent="states"]
+script = ExtResource( 9 )
+
+[node name="chase" type="Node" parent="states"]
+script = ExtResource( 10 )
+
+[node name="attack1" type="Node" parent="states"]
+script = ExtResource( 11 )
+
+[node name="attack2" type="Node" parent="states"]
+script = ExtResource( 12 )
+
+[node name="summon" type="Node" parent="states"]
+script = ExtResource( 13 )
+
+[node name="gap_timer" type="Timer" parent="states/summon"]
+
+[node name="dead" type="Node" parent="states"]
+script = ExtResource( 14 )
+
+[node name="attack_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+bus = "fx"
+
+[node name="hit_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+bus = "fx"
+
+[node name="shoot_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+bus = "fx"
+
+[node name="defeated_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "fx"
+
+[connection signal="area_entered" from="rotator/hitbox_1" to="." method="_on_hitbox1_area_entered"]
+[connection signal="area_entered" from="rotator/hitbox_2" to="." method="_on_hitbox2_area_entered"]
+[connection signal="animation_finished" from="anim" to="." method="_on_animation_finished"]
+[connection signal="timeout" from="visual_timer" to="." method="_on_visual_timer_timeout"]
+[connection signal="timeout" from="states/summon/gap_timer" to="states/summon" method="_on_gap_timer_timeout"]

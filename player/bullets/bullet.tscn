@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/fx/player/atk_fx.png" type="Texture" id=1]
+[ext_resource path="res://player/bullets/bullet.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 12.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade_in"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 0
+collision_mask = 9
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 1 )
+hframes = 7
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+autoplay = "fade_in"
+anims/fade_in = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_Bullet_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

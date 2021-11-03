@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/se_plst00.wav-3443ea7160815e21541bac8fc552fa72.sample"
+
+[deps]
+
+source_file="res://assets/audio/enemy/se_plst00.wav"
+dest_files=[ "res://.import/se_plst00.wav-3443ea7160815e21541bac8fc552fa72.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

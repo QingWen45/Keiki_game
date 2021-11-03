@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/se_slash.wav-9849218c528277ba9bf9e2d236d2c9a1.sample"
+
+[deps]
+
+source_file="res://assets/audio/enemy/se_slash.wav"
+dest_files=[ "res://.import/se_slash.wav-9849218c528277ba9bf9e2d236d2c9a1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

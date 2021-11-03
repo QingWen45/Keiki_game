@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mayumi_defeat.wav-2ac8aa24d390065cbd9c0ce1be53f070.sample"
+
+[deps]
+
+source_file="res://assets/audio/enemy/haniwa/mayumi_defeat.wav"
+dest_files=[ "res://.import/mayumi_defeat.wav-2ac8aa24d390065cbd9c0ce1be53f070.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://menu/start_menu/check.gd" type="Script" id=1]
+[ext_resource path="res://menu/items/menu.tres" type="StyleBox" id=3]
+[ext_resource path="res://menu/scripts/menu_selection.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/fonts/fzxs16.tres" type="DynamicFont" id=5]
+
+[node name="check" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+is_active = true
+
+[node name="margin2" type="MarginContainer" parent="."]
+margin_left = 140.0
+margin_top = 140.0
+margin_right = 340.0
+margin_bottom = 200.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="panel" type="Panel" parent="margin2"]
+margin_right = 200.0
+margin_bottom = 60.0
+custom_styles/panel = ExtResource( 3 )
+
+[node name="vbox" type="VBoxContainer" parent="margin2/panel"]
+margin_right = 196.0
+margin_bottom = 60.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="margin2/panel/vbox"]
+margin_top = 11.0
+margin_right = 196.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 5 )
+text = "覆盖已有记录？"
+align = 1
+valign = 1
+
+[node name="selections" type="HBoxContainer" parent="margin2/panel/vbox"]
+margin_top = 32.0
+margin_right = 196.0
+margin_bottom = 49.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="yes" parent="margin2/panel/vbox/selections" instance=ExtResource( 4 )]
+margin_left = 68.0
+margin_right = 92.0
+text = "yes"
+
+[node name="no" parent="margin2/panel/vbox/selections" instance=ExtResource( 4 )]
+margin_left = 112.0
+margin_right = 128.0
+text = "no"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = "fx"

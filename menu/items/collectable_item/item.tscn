@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://menu/items/item_icon/carve_pen.png" type="Texture" id=1]
+[ext_resource path="res://menu/items/collectable_item/item.gd" type="Script" id=2]
+[ext_resource path="res://assets/audio/ui/se_heal.wav" type="AudioStream" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "default"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 8 ), Vector2( 0, -8 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "float"
+
+[node name="item" type="Area2D"]
+collision_layer = 0
+collision_mask = 128
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 8 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "fx"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/default = SubResource( 2 )
+anims/float = SubResource( 3 )
+
+[connection signal="body_entered" from="." to="." method="_on_item_body_entered"]

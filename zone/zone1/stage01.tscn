@@ -1,0 +1,367 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://player/keiki.tscn" type="PackedScene" id=1]
+[ext_resource path="res://map/Tile1.tres" type="TileSet" id=2]
+[ext_resource path="res://scripts/camera.gd" type="Script" id=3]
+[ext_resource path="res://zone/zone1/stage01.gd" type="Script" id=4]
+[ext_resource path="res://hud/dialog_text/dialog_box.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/sprites/mayumi.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "move"
+length = 0.7
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 8, 9, 10, 11 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "intro"
+length = 10.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("player:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.5, 2, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("player")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "?", null ],
+"method": "say"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Camera2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 3.5, 5.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -144, -104 ), Vector2( 144, -104 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Mayumi:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 6, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 440, -32 ), Vector2( 256, -32 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Mayumi/AnimationPlayer:current_animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 6, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 2,
+"values": [ "move", "idle" ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ColorRect:rect_position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -392, -256 ) ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "start_interact_dialog"
+} ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Camera2D:current")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Mayumi:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "second"
+length = 5.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Mayumi/AnimationPlayer:current_animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 2,
+"values": [ "move", "[stop]" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Mayumi:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Mayumi:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 256, -32 ), Vector2( 440, -32 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ColorRect:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 2, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( -128, -256 ), Vector2( -392, -248 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ColorRect:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Camera2D:current")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("player/MainCamera:current")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "start_game"
+} ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 10, 48 )
+
+[node name="stage01" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="BackMap" type="TileMap" parent="."]
+format = 1
+
+[node name="MainMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( -655372, 0, 65540, -655371, 0, 65540, -655370, 0, 65540, -655369, 0, 65540, -655368, 0, 65540, -655367, 0, 65540, -655366, 0, 65540, -655365, 0, 65540, -655364, 0, 65540, -655363, 0, 65540, -655362, 0, 65540, -655361, 0, 65540, -720896, 0, 65540, -720895, 0, 65540, -720894, 0, 65540, -720893, 0, 65540, -720892, 0, 65540, -720891, 0, 65540, -720890, 0, 65540, -720889, 0, 65540, -720888, 0, 65540, -720887, 0, 65540, -720886, 0, 65540, -720885, 0, 65540, -589836, 0, 65540, -589835, 0, 65540, -589834, 0, 65540, -589833, 0, 65540, -589832, 0, 65540, -589831, 0, 65540, -589830, 0, 65540, -589829, 0, 65540, -589828, 0, 65540, -589827, 0, 65540, -589826, 0, 65540, -589825, 0, 65540, -655360, 0, 65540, -655359, 0, 65540, -655358, 0, 65540, -655357, 0, 65540, -655356, 0, 65540, -655355, 0, 65540, -655354, 0, 65540, -655353, 0, 65540, -655352, 0, 65540, -655351, 0, 65540, -655350, 0, 65540, -655349, 0, 65540, -524300, 0, 65540, -524299, 0, 65540, -524298, 0, 65540, -524297, 0, 65540, -524296, 0, 65540, -524295, 0, 65540, -524294, 0, 65540, -524293, 0, 65540, -524292, 0, 65540, -524291, 0, 65540, -524290, 0, 65540, -524289, 0, 65540, -589824, 0, 65540, -589823, 0, 65540, -589822, 0, 65540, -589821, 0, 65540, -589820, 0, 65540, -589819, 0, 65540, -589818, 0, 65540, -589817, 0, 65540, -589816, 0, 65540, -589815, 0, 65540, -589814, 0, 65540, -589813, 0, 65540, -458764, 0, 65540, -458763, 0, 65540, -458762, 0, 65540, -458761, 0, 65540, -458760, 0, 65540, -458759, 0, 65540, -458758, 0, 65540, -458757, 0, 65540, -458756, 0, 65540, -458755, 0, 65540, -458754, 0, 65540, -458753, 0, 65540, -524288, 0, 65540, -524287, 0, 65540, -524286, 0, 65540, -524285, 0, 65540, -524284, 0, 65540, -524283, 0, 65540, -524282, 0, 65540, -524281, 0, 65540, -524280, 0, 65540, -524279, 0, 65540, -524278, 0, 65540, -524277, 0, 65540, -393228, 0, 65540, -393227, 0, 65540, -393226, 0, 65540, -393225, 0, 65540, -393224, 0, 65540, -393223, 0, 65540, -393222, 0, 65540, -393221, 0, 65540, -393220, 0, 65540, -393219, 0, 65540, -393218, 0, 65540, -393217, 0, 65540, -458752, 0, 65540, -458751, 0, 65540, -458750, 0, 65540, -458749, 0, 65540, -458748, 0, 65540, -458747, 0, 65540, -458746, 0, 65540, -458745, 0, 65540, -458744, 0, 65540, -458743, 0, 65540, -458742, 0, 65540, -458741, 0, 65540, -327692, 0, 3, -327691, 0, 131073, -327690, 0, 131073, -327689, 0, 131073, -327688, 0, 131073, -327687, 0, 131073, -327686, 0, 131073, -327685, 0, 131073, -327684, 0, 131073, -327683, 0, 131073, -327682, 0, 131073, -327681, 0, 131073, -393216, 0, 131073, -393215, 0, 131073, -393214, 0, 131073, -393213, 0, 131073, -393212, 0, 131073, -393211, 0, 131073, -393210, 0, 131073, -393209, 0, 131073, -393208, 0, 131073, -393207, 0, 131073, -393206, 0, 131073, -393205, 0, 5, -262156, 0, 65538, -262155, 0, 65540, -262154, 0, 65540, -262153, 0, 65540, -262152, 0, 65540, -262151, 0, 65540, -262150, 0, 65540, -262149, 0, 65540, -262148, 0, 65540, -262147, 0, 65540, -262146, 0, 65540, -262145, 0, 65540, -327680, 0, 65540, -327679, 0, 65540, -327678, 0, 65540, -327677, 0, 65540, -327676, 0, 65540, -327675, 0, 65540, -327674, 0, 65540, -327673, 0, 65540, -327672, 0, 65540, -327671, 0, 65540, -327670, 0, 65540, -327669, 0, 65536, -196620, 0, 65538, -196619, 0, 65540, -196618, 0, 65540, -196617, 0, 65540, -196616, 0, 65540, -196615, 0, 65540, -196614, 0, 65540, -196613, 0, 65540, -196612, 0, 65540, -196611, 0, 65540, -196610, 0, 65540, -196609, 0, 65540, -262144, 0, 65540, -262143, 0, 65540, -262142, 0, 65540, -262141, 0, 65540, -262140, 0, 65540, -262139, 0, 65540, -262138, 0, 65540, -262137, 0, 65540, -262136, 0, 65540, -262135, 0, 65540, -262134, 0, 65540, -262133, 0, 65536, -131084, 0, 65538, -131083, 0, 65540, -131082, 0, 65540, -131081, 0, 65540, -131080, 0, 65540, -131079, 0, 65540, -131078, 0, 65540, -131077, 0, 65540, -131076, 0, 65540, -131075, 0, 65540, -131074, 0, 65540, -131073, 0, 65540, -196608, 0, 65540, -196607, 0, 65540, -196606, 0, 65540, -196605, 0, 65540, -196604, 0, 65540, -196603, 0, 65540, -196602, 0, 65540, -196601, 0, 65540, -196600, 0, 65540, -196599, 0, 65540, -196598, 0, 65540, -196597, 0, 65536, -65548, 0, 65538, -65547, 0, 65540, -65546, 0, 65540, -65545, 0, 65540, -65544, 0, 65540, -65543, 0, 65540, -65542, 0, 65540, -65541, 0, 65540, -65540, 0, 65540, -65539, 0, 65540, -65538, 0, 65540, -65537, 0, 65540, -131072, 0, 65540, -131071, 0, 65540, -131070, 0, 65540, -131069, 0, 65540, -131068, 0, 65540, -131067, 0, 65540, -131066, 0, 65540, -131065, 0, 65540, -131064, 0, 65540, -131063, 0, 65540, -131062, 0, 65540, -131061, 0, 65540, -12, 0, 65538, -11, 0, 65540, -10, 0, 65540, -9, 0, 65540, -8, 0, 65540, -7, 0, 65540, -6, 0, 65540, -5, 0, 65540, -4, 0, 65540, -3, 0, 65540, -2, 0, 65540, -1, 0, 65540, -65536, 0, 65540, -65535, 0, 65540, -65534, 0, 65540, -65533, 0, 65540, -65532, 0, 65540, -65531, 0, 65540, -65530, 0, 65540, -65529, 0, 65540, -65528, 0, 65540, -65527, 0, 65540, -65526, 0, 65540, -65525, 0, 196612, 65524, 0, 131075, 65525, 0, 1, 65526, 0, 1, 65527, 0, 1, 65528, 0, 1, 65529, 0, 1, 65530, 0, 1, 65531, 0, 1, 65532, 0, 1, 65533, 0, 1, 65534, 0, 1, 65535, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 1, 5, 0, 1, 6, 0, 1, 7, 0, 1, 8, 0, 1, 9, 0, 1, 10, 0, 1, 11, 0, 1, 12, 0, 1, 13, 0, 1, 14, 0, 1, 15, 0, 1, 16, 0, 1, 17, 0, 1, 131060, 0, 65540, 131061, 0, 65540, 131062, 0, 65540, 131063, 0, 65540, 131064, 0, 65540, 131065, 0, 65540, 131066, 0, 65540, 131067, 0, 65540, 131068, 0, 65540, 131069, 0, 65540, 131070, 0, 65540, 131071, 0, 65540, 65536, 0, 65540, 65537, 0, 65540, 65538, 0, 65540, 65539, 0, 65540, 65540, 0, 65540, 65541, 0, 65540, 65542, 0, 65540, 65543, 0, 65540, 65544, 0, 65540, 65545, 0, 65540, 65546, 0, 65540, 65547, 0, 65540, 196596, 0, 65540, 196597, 0, 65540, 196598, 0, 65540, 196599, 0, 65540, 196600, 0, 65540, 196601, 0, 65540, 196602, 0, 65540, 196603, 0, 65540, 196604, 0, 65540, 196605, 0, 65540, 196606, 0, 65540, 196607, 0, 65540, 131072, 0, 65540, 131073, 0, 65540, 131074, 0, 65540, 131075, 0, 65540, 131076, 0, 65540, 131077, 0, 65540, 131078, 0, 65540, 131079, 0, 65540, 131080, 0, 65540, 131081, 0, 65540, 131082, 0, 65540, 131083, 0, 65540, 262132, 0, 65540, 262133, 0, 65540, 262134, 0, 65540, 262135, 0, 65540, 262136, 0, 65540, 262137, 0, 65540, 262138, 0, 65540, 262139, 0, 65540, 262140, 0, 65540, 262141, 0, 65540, 262142, 0, 65540, 262143, 0, 65540, 196608, 0, 65540, 196609, 0, 65540, 196610, 0, 65540, 196611, 0, 65540, 196612, 0, 65540, 196613, 0, 65540, 196614, 0, 65540, 196615, 0, 65540, 196616, 0, 65540, 196617, 0, 65540, 196618, 0, 65540, 196619, 0, 65540, 327668, 0, 65540, 327669, 0, 65540, 327670, 0, 65540, 327671, 0, 65540, 327672, 0, 65540, 327673, 0, 65540, 327674, 0, 65540, 327675, 0, 65540, 327676, 0, 65540, 327677, 0, 65540, 327678, 0, 65540, 327679, 0, 65540, 262144, 0, 65540, 262145, 0, 65540, 262146, 0, 65540, 262147, 0, 65540, 262148, 0, 65540, 262149, 0, 65540, 262150, 0, 65540, 262151, 0, 65540, 262152, 0, 65540, 262153, 0, 65540, 262154, 0, 65540, 262155, 0, 65540, 393204, 0, 65540, 393205, 0, 65540, 393206, 0, 65540, 393207, 0, 65540, 393208, 0, 65540, 393209, 0, 65540, 393210, 0, 65540, 393211, 0, 65540, 393212, 0, 65540, 393213, 0, 65540, 393214, 0, 65540, 393215, 0, 65540, 327680, 0, 65540, 327681, 0, 65540, 327682, 0, 65540, 327683, 0, 65540, 327684, 0, 65540, 327685, 0, 65540, 327686, 0, 65540, 327687, 0, 65540, 327688, 0, 65540, 327689, 0, 65540, 327690, 0, 65540, 327691, 0, 65540, 458740, 0, 65540, 458741, 0, 65540, 458742, 0, 65540, 458743, 0, 65540, 458744, 0, 65540, 458745, 0, 65540, 458746, 0, 65540, 458747, 0, 65540, 458748, 0, 65540, 458749, 0, 65540, 458750, 0, 65540, 458751, 0, 65540, 393216, 0, 65540, 393217, 0, 65540, 393218, 0, 65540, 393219, 0, 65540, 393220, 0, 65540, 393221, 0, 65540, 393222, 0, 65540, 393223, 0, 65540, 393224, 0, 65540, 393225, 0, 65540, 393226, 0, 65540, 393227, 0, 65540, 524276, 0, 65540, 524277, 0, 65540, 524278, 0, 65540, 524279, 0, 65540, 524280, 0, 65540, 524281, 0, 65540, 524282, 0, 65540, 524283, 0, 65540, 524284, 0, 65540, 524285, 0, 65540, 524286, 0, 65540, 524287, 0, 65540, 458752, 0, 65540, 458753, 0, 65540, 458754, 0, 65540, 458755, 0, 65540, 458756, 0, 65540, 458757, 0, 65540, 458758, 0, 65540, 458759, 0, 65540, 458760, 0, 65540, 458761, 0, 65540, 458762, 0, 65540, 458763, 0, 65540 )
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+position = Vector2( -208, -32 )
+
+[node name="MainCamera" type="Camera2D" parent="player"]
+smoothing_enabled = true
+smoothing_speed = 10.0
+script = ExtResource( 3 )
+
+[node name="dialog_box" parent="." instance=ExtResource( 5 )]
+margin_left = 112.0
+margin_right = 392.0
+
+[node name="Mayumi" type="Sprite" parent="."]
+position = Vector2( 440, -32 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 6 )
+hframes = 7
+vframes = 7
+frame = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Mayumi"]
+anims/idle = SubResource( 1 )
+anims/move = SubResource( 2 )
+
+[node name="camera_limit_L" type="Position2D" parent="."]
+position = Vector2( -384, -288 )
+__meta__ = {
+"_gizmo_extents_": 40.0
+}
+
+[node name="camera_limit_R" type="Position2D" parent="."]
+position = Vector2( 384, 32 )
+__meta__ = {
+"_gizmo_extents_": 40.0
+}
+
+[node name="initial_position" type="Position2D" parent="."]
+position = Vector2( -208, -32 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="end_position" type="Position2D" parent="."]
+position = Vector2( 368, -32 )
+__meta__ = {
+"_gizmo_extents_": 50.0
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( -144, -104 )
+current = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -392.0
+margin_top = -256.0
+margin_right = 136.0
+margin_bottom = 56.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/intro = SubResource( 3 )
+anims/second = SubResource( 4 )
+
+[node name="end" type="Area2D" parent="."]
+position = Vector2( 392, -40 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="collider" type="CollisionShape2D" parent="end"]
+shape = SubResource( 5 )
+
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
+[connection signal="body_entered" from="end" to="." method="_on_end_body_entered"]
