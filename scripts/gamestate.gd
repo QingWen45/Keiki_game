@@ -2,7 +2,6 @@ extends Node
 
 var _fname = "gamestate.dat"
 var state = {}
-var saved_state = {}
 var first_start = true
 
 const ID = "010419"
@@ -63,7 +62,7 @@ func clear_boss():
 
 
 func _ready():
-	state_initialize()
+	# state_initialize()
 	self.pause_mode = PAUSE_MODE_PROCESS
 
 
@@ -94,7 +93,6 @@ func state_initialize():
 func save_gamestate():
 	if Game._debug:
 		print( "SAVING GAMESTATE:" )
-	saved_state = state.duplicate( true )
 #	return false
 	var f := File.new()
 	var err := f.open_encrypted_with_pass( \
@@ -110,22 +108,10 @@ func save_gamestate():
 func load_gamestate():
 	var aux = _load_gamestate()
 	if aux.empty():
-		if Game._debug: 
-			print( "gamestate: unable to load gamestate file" )
-		if not saved_state.empty():
-			if Game._debug: 
-				print( "gamestate: using locally saved variable" )
-			state = saved_state.duplicate( true )
-		else:
-			if Game._debug: 
-				print( "gamestate: using initial gamestate" )
-			state_initialize()
-			saved_state = state.duplicate( true )
+		state_initialize()
 		return
 	state = aux
-	saved_state = state.duplicate( true )
 	first_start = false
-	Game.item_menu.load_item()
 
 func _load_gamestate() -> Dictionary:
 	var f := File.new()

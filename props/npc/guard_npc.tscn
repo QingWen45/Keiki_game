@@ -1,16 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://enemy/Haniwa_guard/white.shader" type="Shader" id=1]
 [ext_resource path="res://assets/sprites/Enemies/Haniwa/Haniwa_spear.png" type="Texture" id=2]
 [ext_resource path="res://assets/environment/E.png" type="Texture" id=3]
 [ext_resource path="res://hud/dialog_text/dialog_box.tscn" type="PackedScene" id=4]
 [ext_resource path="res://props/npc/guard_npc.gd" type="Script" id=5]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 1 )
-shader_param/is_white = false
-
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "idle"
 length = 0.8
 loop = true
@@ -28,14 +23,13 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 24, 40 )
 
 [node name="guard_npc" type="Node2D"]
 script = ExtResource( 5 )
 
 [node name="guard_npc" type="Sprite" parent="."]
-material = SubResource( 1 )
 position = Vector2( -16, -48 )
 scale = Vector2( -1, 1 )
 texture = ExtResource( 2 )
@@ -44,7 +38,7 @@ vframes = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="guard_npc"]
 autoplay = "idle"
-anims/idle = SubResource( 2 )
+anims/idle = SubResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
@@ -54,7 +48,7 @@ collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -2, 12 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -80 )

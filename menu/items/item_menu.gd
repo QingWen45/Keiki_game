@@ -16,7 +16,7 @@ func _ready():
 	if not is_active:
 		self.deactivate()
 	
-	load_item()
+	# load_item()
 	_initialize()
 
 func _input(event):
@@ -59,9 +59,21 @@ func load_item():
 	for i in range(items.size()):
 		if Gamestate.state.items.has(items[i].item_no):
 			items[i].unlock()
-			items[i].effect()
 		else:
 			items[i].lock()
+
+
+
+# -----------
+# this method shall be called only once per Game
+# Currently, I plan to call it in 
+# start_menu._ready() when not first_start and
+# start_menu.start_new_game()
+# -----------
+func item_effect():
+	print("item_effected")
+	for i in Gamestate.state.items:
+		items[i].effect()
 
 func _initialize():
 	for i in items:
@@ -71,17 +83,12 @@ func _initialize():
 	des_lb.text = items[0].get_description()
 
 func activate():
-	item_cur = 0
-	update_items()
 	is_active = true
 	set_physics_process(true)
 	set_process_input(true)
 
 func deactivate():
-	item_cur = 0
-	update_items()
 	is_active = false
-	_initialize()
 	set_physics_process(false)
 	set_process_input(false)
 

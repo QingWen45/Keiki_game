@@ -10,6 +10,7 @@ var player_nearby: bool
 var is_chatting: bool
 
 func _ready():
+	e.hide()
 	is_chatting = false
 	player_nearby = false
 

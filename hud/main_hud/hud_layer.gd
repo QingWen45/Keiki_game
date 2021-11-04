@@ -28,7 +28,7 @@ var health_temp
 var refresh_time = 1.0
 
 func _ready():
-	initialize()
+	# initialize()
 	_res = Gamestate.connect("player_hurt", self, "on_player_hurt")
 	_res = Gamestate.connect("player_health_changed", self, "on_health_change")
 	_res = Gamestate.connect("player_max_health_changed", self, "on_max_health_change")

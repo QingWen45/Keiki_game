@@ -12,9 +12,12 @@ func _ready():
 	_res = check.connect("selected", self, "on_check")
 
 	# Game.main.bgm_change(1)
-
 	Gamestate.load_gamestate()
+
 	if not Gamestate.first_start:
+		Game.main.hud_layer.initialize()
+		Game.item_menu.load_item()
+		Game.item_menu.item_effect()
 		$margin/hbox/selections/continue.selectable = true
 		update_menu()
 	
@@ -34,8 +37,6 @@ func on_selected(selection_no):
 			else:
 				start_new_game()
 		1:
-			Game.main.get_node("hud_layer").initialize()
-			Gamestate.load_gamestate()
 			Game.main.load_save()
 		2:
 			# load option screen ,yet in progress
@@ -56,6 +57,8 @@ func on_check(selection):
 
 func start_new_game():
 	Gamestate.state_initialize()
-	Game.item_menu.load_item()
 	Gamestate.save_gamestate()
+	Game.main.hud_layer.initialize()
+	Game.item_menu.load_item()
+	Game.item_menu.item_effect()
 	Game.main.load_save()

@@ -39,7 +39,7 @@ func _input(_event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			is_fullscreen = false
 
-func camera_shake(strength: float, durarion: float = 1.0):
+func camera_shake(strength: float, duration: float = 1.0):
 	if not camera:
 		return
-	camera.shake(strength, durarion)
+	camera.shake(strength, duration)

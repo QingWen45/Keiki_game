@@ -26,6 +26,7 @@ func on_selected(selection_no):
 			hide()
 			deactivate()
 			Gamestate.load_gamestate()
+			Game.item_menu.load_item()
 			Game.main.pause_finish()
 			Game.main.load_save()
 		3:
@@ -34,7 +35,6 @@ func on_selected(selection_no):
 			deactivate()
 			Game.main.bgm_change(0)
 			Game.main.hud.hide()
-			Game.main.get_node("hud_layer").initialize()
 			Game.main.pause_finish()
 			Game.main.load_screen(START_MENU)
 		4: 

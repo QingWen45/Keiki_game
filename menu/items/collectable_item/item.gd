@@ -22,5 +22,4 @@ func _on_item_body_entered(_body):
 	Game.main.get_node("hud_layer").show_text("New item get.")
 
 	Gamestate.state.items.append(item_no)
-	Gamestate.state.current_pos = "item"
-	Game.item_menu.load_item()
+	Game.item_menu.items[item_no].effect()
